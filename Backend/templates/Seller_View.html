@@ -1,0 +1,85 @@
+{% extends 'index.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Seller Details</h3>
+                    <div class="table-responsive pt-3">
+                        <table class="table table-striped project-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Product </th>
+                                    <th>Product Name</th>
+                                    <th>Mobile Number</th>
+                                    <th>E-mail</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Productmage</th>
+                                    <th>Category Image</th>
+                                    <!-- <th>Actions</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for i in data %}
+                                <tr>
+                                    <td>{{ i.product }}</td>
+                                    <td>{{ i.product_name }}</td>
+                                    <td>{{ i.mobile }}</td>
+                                    <td>{{ i.name }}</td>
+                                    <td>{{ i.email }}</td>
+                                    <td>{{ i.description }}</td>
+                                    <td>{{ i.price }}</td>
+                                    <td>
+                                        <img src="{{ i.product_image.url }}" class="img-fluid" alt="Product Image" style="max-width: 100px; max-height: 150px;">
+                                    </td>
+                                    <td>
+                                        <div class="d-flex">
+                                          
+                                            <!-- <form action="{% url 'deletesell' dataid=i.id %}" method="post">
+                                                {% csrf_token %}
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    Delete
+                                                    <i class="typcn typcn-delete-outline btn-icon-append"></i>
+                                                </button>
+                                            </form> -->
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+{% if messages %}
+{% for i in messages %}
+{% if i.tags == 'warning' %}
+<script>
+  swal('{{i}}','','warning');
+</script>
+{% elif i.tags == 'error' %}
+<script>
+  swal('{{i}}','','error');
+</script>
+{% elif i.tags == 'success' %}
+<script>
+  swal('{{i}}','','success');
+</script>
+{% else %}
+<script>
+  swal('{{i}}','','info');
+</script>
+{% endif %}
+{% endfor %}
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Deal Finder</title>
+
+    <!-- Font Icon -->
+    <link rel="stylesheet" href="{% static 'fonts/material-icon/css/material-design-iconic-font.min.css' %}">
+
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+    <div class="main">
+        <section class="sign-in">
+            <div class="container">
+                <div class="signin-content">
+                    <div class="signin-image">
+                        <figure><img src="{% static 'images/signin-image.jpg' %}" alt="sing up image"></figure>
+                        <a href="{% url 'regpage' %}" class="signup-image-link">Create an account</a>
+                        <a href="{% url 'admin_login' %}" class="signup-image-link">Admin Login</a>
+                    </div>
+
+                    <div class="signin-form">
+                        <h2 class="form-title">Sign up</h2>
+                        <form class="pt-3" method="post" action="{% url 'user_login' %}">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="your_name"><i class="zmdi zmdi-account material-icons-name"></i></label>
+                                <input type="text" name="username" id="your_name" placeholder="Your Name"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="your_pass"><i class="zmdi zmdi-lock"></i></label>
+                                <input type="password" name="password" id="your_pass" placeholder="Password"/>
+                                <span id="password-display"></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="checkbox" id="toggle-password" class="toggle-password" />
+                                <label for="toggle-password" class="label-toggle-password">Show Password</label>
+                            </div>
+                            <div class="form-group form-button">
+                                <input type="submit" name="signin" id="signin" class="form-submit" value="Log in"/>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- JS -->
+    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        {% if messages %}
+            {% for d in messages %}
+                {% if i.tags == 'warning' %}
+                    <script>
+                        swal('{{d}}','','warning');
+                    </script>
+                {% elif d.tags == 'error' %}
+                    <script>
+                        swal('{{d}}','','error');
+                    </script>
+                {% elif d.tags == 'success' %}
+                    <script>
+                        swal('{{d}}','','success');
+                    </script>
+                {% else %}
+                    <script>
+                        swal('{{d}}','','info');
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+</html>
+

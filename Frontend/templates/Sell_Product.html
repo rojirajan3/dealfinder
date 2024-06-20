@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+{% extends 'user.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .center-form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Ensure full screen height */
+            padding: 20px; /* Add padding for smaller screens */
+            box-sizing: border-box;
+            background-color: #f5f5f5; /* Background color for contrast */
+        }
+        .form-container {
+            width: 100%;
+            max-width: 600px; /* Adjust max-width as needed */
+            padding: 20px;
+            margin-top: 40px; /* Adjust margin-top to move the form down */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            background: #fff; /* Background color */
+            box-sizing: border-box;
+        }
+        .form-control,
+        .file-upload-info,
+        .stext-111,
+        textarea {
+            width: 100%; /* Ensure full width */
+            margin-bottom: 15px; /* Add spacing between inputs */
+        }
+        .input-group {
+            width: 100%; /* Ensure full width */
+            margin-bottom: 15px; /* Add spacing between inputs */
+        }
+        .form-group {
+            margin-bottom: 15px; /* Add spacing between inputs */
+        }
+        .box {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fafafa;
+            margin-bottom: 15px;
+        }
+        button[type="submit"] {
+            display: block;
+            width: 100%; /* Ensure button takes full width */
+        }
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('form').addEventListener('submit', function(event) {
+                var mobileNumber = document.querySelector('input[name="number"]').value;
+                if (mobileNumber.length !== 10) {
+                    alert('Mobile number must be exactly 10 digits long.');
+                    event.preventDefault();
+                }
+
+                var email = document.querySelector('input[name="email"]').value;
+                if (!email.includes('@')) {
+                    alert('Email must contain "@" symbol.');
+                    event.preventDefault();
+                }
+            });
+    </script>
+</head>
+<body>
+    <br><br>
+    <div class="center-form">    
+        <div class="form-container">
+            <form method="post" action="{% url 'savedata' %}" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="form-group box">
+                    <select class="form-control" name="cname">
+                        <option>Category</option>
+                        {% for i in category %}
+                        <option>{{i.Product_Name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group box">
+                    <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="pname" placeholder="Item Name *" required>
+                </div>
+
+                <div class="form-group box">
+                    <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="tel" name="number" placeholder="Mobile Number" pattern="\d{10}" title="Please enter exactly 10 digits" required>
+                </div>
+
+                <div class="form-group box">
+                    <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="name" placeholder="Your Name *" required>
+                </div>
+
+                <div class="form-group box">
+                    <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="email" name="email" placeholder="Email *" required>
+                </div>
+
+                <div class="form-group box">
+                    <textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="description" placeholder="Item Description..."></textarea>
+                </div>
+
+                <div class="form-group box">
+                   <input class="stext-111 cl2 plh3 size-116 p-lr-18" type="text" name="price" placeholder="Item Price *" pattern="\d+" title="Please enter only numbers" required>
+                </div>
+
+
+                <div class="form-group box">
+                    <label>Upload Image</label>
+                    <div class="input-group">
+                        <input type="file" class="form-control file-upload-info" placeholder="Image" name="image">
+                    </div>
+                </div>
+
+                <button type="submit" class="flex-c-m stext-101 cl0 size-125 bg3 bor2 hov-btn3 p-lr-15 trans-04">
+                    Post Item
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+{% if messages %}
+            {% for d in messages %}
+                {% if i.tags == 'warning' %}
+                    <script>
+                        swal('{{d}}','','warning');
+                    </script>
+                {% elif d.tags == 'error' %}
+                    <script>
+                        swal('{{d}}','','error');
+                    </script>
+                {% elif d.tags == 'success' %}
+                    <script>
+                        swal('{{d}}','','success');
+                    </script>
+                {% else %}
+                    <script>
+                        swal('{{d}}','','info');
+                    </script>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+</html>
+{% endblock %}

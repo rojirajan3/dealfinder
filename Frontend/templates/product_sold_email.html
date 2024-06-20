@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Listed Successfully</title>
+</head>
+<body>
+    <h1>Your Product has added Successfully, {{ product.UserId.Username }}!</h1>
+    <p>Your product "{{ product.product_name }}" has been successfully listed on our platform.</p>
+    <p>Details of your product:</p>
+    <ul>
+        <li>Category: {{ product.product }}</li>
+        <li>Product Name: {{ product.product_name }}</li>
+        <li>Mobile: {{ product.mobile }}</li>
+        <li>Name: {{ product.name }}</li>
+        <li>Email: {{ product.email }}</li>
+        <li>Description: {{ product.description }}</li>
+        <li>Price: RS.{{ product.price }}</li>
+    </ul>
+    <p>Thank you for choosing our platform to sell your product.</p>
+    <p>Best regards,<br>The Deal Finder Team</p>
+</body>
+</html>

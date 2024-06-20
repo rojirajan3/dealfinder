@@ -1,0 +1,79 @@
+
+{% extends 'Home.html' %}
+{% block content %}
+{% load static %}
+<!-- Title page -->
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('images/bg-01.jpg');">
+		<h2 class="ltext-105 cl0 txt-center">
+			About
+		</h2>
+	</section>	
+
+
+	<!-- Content page -->
+	<section class="bg0 p-t-75 p-b-120">
+		<div class="container">
+			<div class="row p-b-148">
+				<div class="col-md-7 col-lg-8">
+					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							Our Story
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							Deal Finder was born out of a simple idea: to create a platform where people can easily buy and sell items within their community. Our journey began with a small team of passionate individuals who noticed the challenges faced by both buyers and sellers in finding reliable deals.
+						</p>
+
+						<p class="stext-113 cl6 p-b-26">
+							We set out to build a solution that simplifies the process, making it more efficient and trustworthy. Today, Deal Finder has grown into a vibrant marketplace where users can connect, exchange goods, and find great value.
+						</p>
+
+						<p class="stext-113 cl6 p-b-26">
+							Our commitment to innovation and customer satisfaction drives us to continually improve and expand our services, ensuring that everyone can benefit from the best deals available.
+						</p>
+					</div>
+				</div>
+
+				<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
+					<div class="how-bor1 ">
+						<div class="hov-img0">
+							<img src="{% static 'images/buy.jpeg' %}" alt="IMG">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row">
+				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
+					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
+						<h3 class="mtext-111 cl2 p-b-16">
+							Our Mission
+						</h3>
+
+						<p class="stext-113 cl6 p-b-26">
+							At Deal Finder, our vision is to become the leading platform for buying and selling items, where trust and convenience come first. We aim to revolutionize the way people discover deals by providing an intuitive and secure marketplace that caters to the diverse needs of our users. We envision a world where everyone has access to affordable products and can easily recycle their unused items, contributing to a more sustainable future. 
+						</p>
+
+						<div class="bor16 p-l-29 p-b-9 m-t-22">
+							<p class="stext-114 cl6 p-r-40 p-b-11">
+								"Through continuous innovation and dedication to our community, we strive to create a platform that not only meets but exceeds the expectations of our users, making Deal Finder the go-to destination for all your buying and selling needs."
+							</p>
+
+							<span class="stext-111 cl8">
+								<h6>- Deal Finder</h6>
+							</span>
+						</div>
+					</div>
+				</div>
+
+				<div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
+					<div class="how-bor2">
+						<div class="hov-img0">
+							<img src="{% static 'images/deaaal.jpeg' %}" alt="IMG">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>	
+    {% endblock %}
